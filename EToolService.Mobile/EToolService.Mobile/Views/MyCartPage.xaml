@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.MyCartPage">
+    <ContentPage.BindingContext>
+        <viewModels:CartViewModel></viewModels:CartViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="title" Text="Vaša korpa" Padding="0,20,0,25" 
+                   HorizontalTextAlignment="Center" TextColor="DarkCyan" 
+                   Font="Bold, 20" VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding ProductList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Item1.ProductName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Item1.Price, StringFormat='{0} KM'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label Text="{Binding Item2, StringFormat='{0} naručenih'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                                <StackLayout WidthRequest="225" Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding Item1.GetDiscount, StringFormat='Popust: {0}%'}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource SubtitleStyle}"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Item1.Description, StringFormat='Dimenzije: {0}'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label Text="{Binding Item3, StringFormat='Ukupno sa popustom: {0} KM'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                <Label Margin="0,0,0,25" HorizontalTextAlignment="Center" Text="{Binding Total, StringFormat='Ukupna vrijednost narudžbe: {0} KM'}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       TextColor="ForestGreen"
+                       Font="15, Bold"/>
+            </StackLayout>
+            <Button x:Name="BtnConfirm" Command="{Binding ConfirmOrder}" TextColor="White" BackgroundColor="DarkCyan" Text="Potvrdi narudžbu" FontAttributes="Bold" Margin="20,0,20,10"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

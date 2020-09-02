@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels"
+             x:Class="EToolService.Mobile.Views.MyServicesPage">
+    <ContentPage.BindingContext>
+        <viewModels:ToolServiceViewModel></viewModels:ToolServiceViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Pregled servisa" Padding="0,20,0,25" HorizontalTextAlignment="Center" 
+                   TextColor="DarkCyan" Font="Bold, 20"
+                   VerticalOptions="StartAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Services}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="20" Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
+                                    <Label Text="{Binding ToolName, StringFormat='Naziv alata: {0}'}"
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}"                                       
+                                           FontSize="15" />
+                                    <Label Text="{Binding ServiceType, StringFormat='Tip servisa: {0}'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding DateCreated, StringFormat='Datum kreiranja: {0}'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="EndAndExpand" Orientation="Vertical">
+                                    <Label LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"                                       
+                                           FontSize="13" >
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Responsed}" Value="true">
+                                                <Setter Property="Text" Value="Odgovoreno" />
+                                                <Setter Property="TextColor" Value="DarkGreen" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Responsed}" Value="false">
+                                                <Setter Property="Text" Value="Na čekanju" />
+                                                <Setter Property="TextColor" Value="DarkRed" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Label LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" >
+                                        <Label.Triggers>
+                                            <MultiTrigger TargetType="Label">
+                                                <MultiTrigger.Conditions>
+                                                    <BindingCondition Binding="{Binding Responsed}" Value="true" />
+                                                    <BindingCondition Binding="{Binding Approved}" Value="false" />
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter Property="Text" Value="Nije odobreno" />
+                                                    <Setter Property="TextColor" Value="DarkRed" />
+                                                </MultiTrigger.Setters>
+                                            </MultiTrigger>
+                                            <MultiTrigger TargetType="Label">
+                                                <MultiTrigger.Conditions>
+                                                    <BindingCondition Binding="{Binding Responsed}" Value="true" />
+                                                    <BindingCondition Binding="{Binding Approved}" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                                <MultiTrigger.Setters>
+                                                    <Setter Property="Text" Value="Odobreno" />
+                                                    <Setter Property="TextColor" Value="DarkGreen" />
+                                                </MultiTrigger.Setters>
+                                            </MultiTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

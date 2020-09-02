@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EToolService.Desktop.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="APIUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:5000/api</Value>
+    </Setting>
+    <Setting Name="AdminUsername" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Admin</Value>
+    </Setting>
+    <Setting Name="AdminPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GlavniAdmin</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels"
+             x:Class="EToolService.Mobile.Views.OrdersPage">
+    <ContentPage.BindingContext>
+        <viewModels:OrderViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="title" Text="Ostvarene narudžbe" Padding="0,20,0,25" 
+                   HorizontalTextAlignment="Center" TextColor="DarkCyan" 
+                   Font="Bold, 20" VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Orders}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Id, StringFormat='Broj narudžbe: {0}'}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="15" />
+                                    <Label Text="{Binding OrderDate, StringFormat='Datum ostvarivanja: {0}'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"/>
+                                    <Label x:Name="StanjeNarudzbe" Text="{Binding Condition}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                                <StackLayout WidthRequest="150" Orientation="Vertical" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding Total, StringFormat='Ukupno: {0} KM'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen"
+                                           FontAttributes="Bold"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

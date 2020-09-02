@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels"
+             x:Class="EToolService.Mobile.Views.SettingsPage">
+    <ContentPage.BindingContext>
+        <viewModels:SettingsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label x:Name="title" Text="Postavke vašeg naloga" Padding="0,20,0,25" 
+                       HorizontalTextAlignment="Center" TextColor="DarkCyan" 
+                       Font="Bold, 20" VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout Padding="50,0,50,0">
+                <Label Text="Naziv kompanije:"></Label>
+                <Entry x:Name="txtCompanyName" Text="{Binding CompanyName}"></Entry>
+                <Label Text="Adresa:"></Label>
+                <Entry x:Name="txtAddress" Text="{Binding Address}"></Entry>
+                <Label Text="Odaberite oblast:"></Label>
+                <Picker SelectedItem="{Binding SelectedArea}" ItemsSource="{Binding AreasList}" ItemDisplayBinding="{Binding AreaName}">
+
+                </Picker>
+                <Label Text="Korisničko ime:"></Label>
+                <Entry x:Name="txtUsername" Text="{Binding Username}"></Entry>
+                <Label Text="Unesite lozinku:"></Label>
+                <Entry x:Name="txtPassword" Text="{Binding Password}" IsPassword="True"></Entry>
+                <Label Text="Ponovo unesite lozinku:"></Label>
+                <Entry x:Name="txtPasswordConfirm" Text="{Binding Password}" IsPassword="True"></Entry>
+
+                <Label Text="Email:"></Label>
+                <Entry x:Name="txtEmail" Text="{Binding Email}"></Entry>
+                <Label Text="Kontakt tel:"></Label>
+                <Entry x:Name="txtPhoneNumber" Placeholder="Format: 06x/xxx-xxx" Text="{Binding PhoneNumber}"></Entry>
+                <StackLayout Padding="0,20">
+                    <Button VerticalOptions="EndAndExpand" CornerRadius="10" BackgroundColor="DodgerBlue" TextColor="White" Command="{Binding UpdateCommand}" Text="Promijeni podatke"></Button>
+                    <Label HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Text="Pričekajte.."></Label>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

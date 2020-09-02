@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.RequestFormPage">
+    <ContentPage.BindingContext>
+        <viewModels:RequestFormViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="0,25" Orientation="Vertical" VerticalOptions="Start">
+            <Label Text="Pošaljite novi zahtjev za servis"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                FontAttributes="Bold"
+                FontSize="21"/>
+            <StackLayout Orientation="Vertical" Margin="45,35" >
+                <Label HorizontalTextAlignment="Start" Text="Naziv alata"
+                       VerticalOptions="CenterAndExpand" 
+                       FontSize="17"
+                       TextColor="Gray"/>
+                <Entry Text="{Binding Request.ToolName}"></Entry>
+                <Label Margin="0,0,0,15" HorizontalOptions="StartAndExpand" Text="Naziv alata koji želite servisirati"
+                       VerticalOptions="Center" 
+                       FontSize="13"
+                       TextColor="LightSlateGray"/>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <StackLayout WidthRequest="175" Orientation="Vertical">
+                        <Label HorizontalOptions="StartAndExpand" Text="Vrsta servisa"
+                               VerticalOptions="Center" 
+                               FontSize="17"
+                               TextColor="Gray"/>
+                        <Picker SelectedItem="{Binding Request.ServiceType}" ItemsSource="{Binding ServiceTypes}" Margin="0,6"></Picker>
+                    </StackLayout>
+                    <StackLayout Margin="0,0,0,15" WidthRequest="105" Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                        <Label Text="Količina"
+                               VerticalOptions="Center" 
+                               FontSize="17"
+                               TextColor="Gray"/>
+                        <Entry Text="{Binding Request.Quantity}" Keyboard="Numeric"></Entry>
+                    </StackLayout>
+                </StackLayout>
+                <Label HorizontalTextAlignment="Start" Text="Napomena"
+                       VerticalOptions="CenterAndExpand" 
+                       FontSize="17"
+                       TextColor="Gray"/>
+                <Editor Text="{Binding Request.Note}" Margin="0,0,0,15" HeightRequest="150"></Editor>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding Request.Urgent}"></CheckBox>
+                    <Label HorizontalTextAlignment="Start" Text="Hitno (Cijena može da se poveća)"
+                           VerticalOptions="CenterAndExpand" 
+                           FontSize="17"
+                           TextColor="Gray"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Odaberi" Clicked="Button_OnClicked" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSeaGreen" TextColor="White"></Button>
+                    <Label x:Name="TxtFilename" HorizontalTextAlignment="Start" Text="Dodaj prilog"
+                           VerticalOptions="CenterAndExpand" 
+                           FontSize="17"
+                           TextColor="Gray"/>
+                </StackLayout>
+            </StackLayout>
+            <Button Command="{Binding SubmitCommand}" Margin="25,-10,25,0" CornerRadius="10" BackgroundColor="DodgerBlue" TextColor="White" Text="Potvrdi"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

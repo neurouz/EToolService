@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             xmlns:converters="clr-namespace:EToolService.Mobile.Converters;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.ProductsPage">
+    <ContentPage.BindingContext>
+        <viewModels:ProductsViewModel></viewModels:ProductsViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Proizvodi" Padding="0,20,0,25" HorizontalTextAlignment="Center" 
+                   TextColor="DarkCyan" Font="Bold, 20"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding ProductList}" ItemSelected="ListView_OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image WidthRequest="80" HeightRequest="80" Source="{Binding Key.Image, Converter={StaticResource imgConv}}"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Key.ProductName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Value, StringFormat='{0} KM'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label Text="Klik za više informacija"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                                <StackLayout WidthRequest="200" Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding Key.Condition}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource SubtitleStyle}"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Key.Description, StringFormat='Dimenzije: {0}'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

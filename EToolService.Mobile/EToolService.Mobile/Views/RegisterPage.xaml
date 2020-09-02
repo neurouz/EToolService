@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.RegisterPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="30,20,30,0" Spacing="2">
+            <StackLayout Padding="0,0,0,25">
+                <Label FontSize="20" FontAttributes="Bold" Text="Registracija na EToolService"></Label>
+            </StackLayout>
+
+            <Label Text="Naziv kompanije:"></Label>
+            <Entry x:Name="txtCompanyName" Text="{Binding CustomerRequest.CompanyName}"></Entry>
+            <Label Text="Adresa:"></Label>
+            <Entry x:Name="txtAddress" Text="{Binding CustomerRequest.Address}"></Entry>
+            <Label Text="Odaberite oblast:"></Label>
+            <Picker SelectedItem="{Binding SelectedArea}" ItemsSource="{Binding AreasList}" ItemDisplayBinding="{Binding AreaName}">
+
+            </Picker>
+            <Label Text="Korisničko ime:"></Label>
+            <Entry x:Name="txtUsername" Text="{Binding CustomerRequest.Username}"></Entry>
+            <Label Text="Unesite lozinku:"></Label>
+            <Entry x:Name="txtPassword" Text="{Binding CustomerRequest.Password}" IsPassword="True"></Entry>
+            <Label Text="Ponovo unesite lozinku:"></Label>
+            <Entry x:Name="txtPasswordConfirm" Text="{Binding CustomerRequest.PasswordConfirm}" IsPassword="True"></Entry>
+
+            <Label Text="Email:"></Label>
+            <Entry x:Name="txtEmail" Text="{Binding CustomerRequest.Email}"></Entry>
+            <Label Text="Kontakt tel:"></Label>
+            <Entry x:Name="txtPhoneNumber" Placeholder="Format: 06x/xxx-xxx" Text="{Binding CustomerRequest.PhoneNumber}"></Entry>
+            <StackLayout Padding="0,20">
+                <Button VerticalOptions="EndAndExpand" CornerRadius="10" BackgroundColor="DodgerBlue" TextColor="White" Command="{Binding RegisterCommand}" Text="Registruj me"></Button>
+                <Label HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Text="Pričekajte.."></Label>
+            </StackLayout>
+        </StackLayout>
+            
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED8750C9-A8E2-4C52-8A64-982C6B42EF74}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EToolService.Desktop</RootNamespace>
+    <AssemblyName>EToolService.Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.11\lib\net40\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroSet.UI, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\MetroSet.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XanderUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\Customer\frmCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmCustomers.Designer.cs">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\FrmEmployeeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\FrmEmployeeAdd.Designer.cs">
+      <DependentUpon>FrmEmployeeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeDetails.Designer.cs">
+      <DependentUpon>frmEmployeeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeEdit.Designer.cs">
+      <DependentUpon>frmEmployeeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\frmEmployeeList.Designer.cs">
+      <DependentUpon>frmEmployeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Machine\frmAssignMachine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Machine\frmAssignMachine.Designer.cs">
+      <DependentUpon>frmAssignMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Machine\frmMachineDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Machine\frmMachineDetails.Designer.cs">
+      <DependentUpon>frmMachineDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Material\frmAddMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Material\frmAddMaterial.Designer.cs">
+      <DependentUpon>frmAddMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Material\frmMaterialShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Material\frmMaterialShow.Designer.cs">
+      <DependentUpon>frmMaterialShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Order\frmOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Order\frmOrderDetails.Designer.cs">
+      <DependentUpon>frmOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Order\frmOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Order\frmOrders.Designer.cs">
+      <DependentUpon>frmOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Product\frmProductEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Product\frmProductEdit.Designer.cs">
+      <DependentUpon>frmProductEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Product\frmProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Product\frmProducts.Designer.cs">
+      <DependentUpon>frmProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Report\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Report\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Request\frmAddRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Request\frmAddRequest.Designer.cs">
+      <DependentUpon>frmAddRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Request\frmRequestsDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Request\frmRequestsDetail.Designer.cs">
+      <DependentUpon>frmRequestsDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Request\RequestDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Request\RequestDetails.Designer.cs">
+      <DependentUpon>RequestDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmServiceResponse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmServiceResponse.Designer.cs">
+      <DependentUpon>frmServiceResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmToolDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmToolDetails.Designer.cs">
+      <DependentUpon>frmToolDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmToolService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ToolService\frmToolService.Designer.cs">
+      <DependentUpon>frmToolService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ButtonHelper.cs" />
+    <Compile Include="Helpers\PanelHelper.cs" />
+    <Compile Include="IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dimensions.cs" />
+    <Compile Include="Models\RecycleCollection.cs" />
+    <Compile Include="UserControls\BarDimensions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BarDimensions.Designer.cs">
+      <DependentUpon>BarDimensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BoxDimensions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BoxDimensions.Designer.cs">
+      <DependentUpon>BoxDimensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IDimensions.cs" />
+    <Compile Include="UserControls\ClientCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ClientCard.Designer.cs">
+      <DependentUpon>ClientCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EmployeeSidebar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\EmployeeSidebar.Designer.cs">
+      <DependentUpon>EmployeeSidebar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Loader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Loader.Designer.cs">
+      <DependentUpon>Loader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\APIService.cs" />
+    <Compile Include="UserControls\MachineDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MachineDetails.Designer.cs">
+      <DependentUpon>MachineDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MaterialCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MaterialCard.Designer.cs">
+      <DependentUpon>MaterialCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MaterialSidebar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MaterialSidebar.Designer.cs">
+      <DependentUpon>MaterialSidebar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OrderCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OrderCard.Designer.cs">
+      <DependentUpon>OrderCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProductCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ProductCard.Designer.cs">
+      <DependentUpon>ProductCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProductDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ProductDetails.Designer.cs">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RequestDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\RequestDetail.Designer.cs">
+      <DependentUpon>RequestDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ToolServiceCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ToolServiceCard.Designer.cs">
+      <DependentUpon>ToolServiceCard.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Customer\frmCustomers.resx">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\FrmEmployeeAdd.resx">
+      <DependentUpon>FrmEmployeeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\frmEmployeeDetails.resx">
+      <DependentUpon>frmEmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\frmEmployeeEdit.resx">
+      <DependentUpon>frmEmployeeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\frmEmployeeList.resx">
+      <DependentUpon>frmEmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Machine\frmAssignMachine.resx">
+      <DependentUpon>frmAssignMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Machine\frmMachineDetails.resx">
+      <DependentUpon>frmMachineDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Material\frmAddMaterial.resx">
+      <DependentUpon>frmAddMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Material\frmMaterialShow.resx">
+      <DependentUpon>frmMaterialShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Order\frmOrderDetails.resx">
+      <DependentUpon>frmOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Order\frmOrders.resx">
+      <DependentUpon>frmOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Product\frmProductEdit.resx">
+      <DependentUpon>frmProductEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Product\frmProducts.resx">
+      <DependentUpon>frmProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Request\frmAddRequest.resx">
+      <DependentUpon>frmAddRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Request\frmRequestsDetail.resx">
+      <DependentUpon>frmRequestsDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Request\RequestDetails.resx">
+      <DependentUpon>RequestDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToolService\frmServiceResponse.resx">
+      <DependentUpon>frmServiceResponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToolService\frmToolDetails.resx">
+      <DependentUpon>frmToolDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ToolService\frmToolService.resx">
+      <DependentUpon>frmToolService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BarDimensions.resx">
+      <DependentUpon>BarDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BoxDimensions.resx">
+      <DependentUpon>BoxDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ClientCard.resx">
+      <DependentUpon>ClientCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\EmployeeSidebar.resx">
+      <DependentUpon>EmployeeSidebar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Loader.resx">
+      <DependentUpon>Loader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\MachineDetails.resx">
+      <DependentUpon>MachineDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MaterialCard.resx">
+      <DependentUpon>MaterialCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MaterialSidebar.resx">
+      <DependentUpon>MaterialSidebar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OrderCard.resx">
+      <DependentUpon>OrderCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProductCard.resx">
+      <DependentUpon>ProductCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ProductDetails.resx">
+      <DependentUpon>ProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RequestDetail.resx">
+      <DependentUpon>RequestDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ToolServiceCard.resx">
+      <DependentUpon>ToolServiceCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Data\Months.json" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\MetroSet.UI.dll" />
+    <Content Include="Libraries\XanderUI.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eToolService.Model\EToolService.Model.csproj">
+      <Project>{3FCF3347-056F-4B58-947C-02FCFFAE2645}</Project>
+      <Name>EToolService.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

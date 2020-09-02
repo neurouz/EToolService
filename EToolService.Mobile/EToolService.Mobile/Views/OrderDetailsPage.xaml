@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels"
+             x:Class="EToolService.Mobile.Views.OrderDetailsPage">
+    <ContentPage.BindingContext>
+        <viewModels:OrderDetailsViewModel></viewModels:OrderDetailsViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label Text="Detalji o narudžbi" Padding="0,20,0,25" HorizontalTextAlignment="Center" TextColor="DarkCyan" Font="Bold, 20"></Label>
+            </StackLayout>
+            <Label Text="{Binding OrderDate, StringFormat='Datum narudžbe: {0}'}" 
+                   LineBreakMode="NoWrap" 
+                   Style="{DynamicResource ListItemTextStyle}"
+                   FontSize="16" />
+            <ListView ItemsSource="{Binding Order.Products}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="25,10,25,10" Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Value.ProductName, StringFormat='Naziv proizvoda: {0}'}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" 
+                                           TextColor="DarkCyan"/>
+                                    <Label Text="{Binding Key, StringFormat='Količina: {0} komada'}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="16" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand">
+                                    <Label Text="{Binding Value.Price, StringFormat='Cijena po komadu: {0} KM'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label Text="{Binding Value.GetDiscount, StringFormat='Popust: {0}%'}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="ForestGreen" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Margin="0,0,0,100" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label HorizontalTextAlignment="Center" Text="{Binding Order.Total, StringFormat='Ukupna cijena: {0} KM'}" FontAttributes="Bold" FontSize="20"></Label>
+                <Label HorizontalTextAlignment="Center" Text="{Binding Order.Condition, StringFormat='Stanje narudžbe: {0}'}" FontSize="20"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

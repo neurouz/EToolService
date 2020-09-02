@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels"
+             x:Class="EToolService.Mobile.Views.ServiceDetailsPage">
+    <ContentPage.BindingContext>
+        <viewModels:ServiceDetailsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            
+            <Label x:Name="title" Text="Detalji o servisu" Margin="0,40,0,50" 
+                   HorizontalTextAlignment="Center" TextColor="DarkCyan" 
+                   Font="Bold, 20" VerticalOptions="StartAndExpand"
+                   VerticalTextAlignment="Start"
+                   HorizontalOptions="CenterAndExpand" />
+            
+            <StackLayout Margin="25,0,0,0" Orientation="Vertical" Spacing="7">
+                <Label Text="Naziv alata" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="FillAndExpand" />
+                <Label Margin="10,0,0,0" Text="{Binding ServiceConverted.ToolName}" FontSize="15"
+                        VerticalOptions="CenterAndExpand" />
+
+                <Label Text="Tip servisa" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,0,0" Text="{Binding ServiceConverted.ServiceType}" FontSize="15"
+                        VerticalOptions="CenterAndExpand" />
+
+                <Label Text="Status" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,0,0" Text="{Binding ServiceConverted.Approved}" FontSize="15"
+                        VerticalOptions="CenterAndExpand" />
+
+                <Label Text="Detalji" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,20,0" Text="{Binding ServiceConverted.Note}" FontSize="15" HeightRequest="60"
+                        VerticalOptions="StartAndExpand" />
+
+                <Label Text="Odgovor" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,20,0" Text="{Binding ServiceConverted.Explanation}" FontSize="15" HeightRequest="80"
+                        VerticalOptions="StartAndExpand" />
+
+                <Label Text="Cijena" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,0,0" Text="{Binding ServiceConverted.Price}" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Label Text="Datum završetka" FontAttributes="Bold" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+                <Label Margin="10,0,0,0" Text="{Binding ServiceConverted.FinishDate}" FontSize="15"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

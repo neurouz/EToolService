@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             xmlns:converters="clr-namespace:EToolService.Mobile.Converters;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.ProductDetailPage">
+    <ContentPage.BindingContext>
+        <viewModels:ProductDetailModel></viewModels:ProductDetailModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+            <converters:DiscountConverter x:Key="DiscountConverter"></converters:DiscountConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+
+                <Label Text="{Binding Proizvod.ProductName}" Padding="0,20,0,25" HorizontalTextAlignment="Center" TextColor="DarkCyan" Font="Bold, 20"></Label>
+                <Image VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300" HeightRequest="300" Source="{Binding Proizvod.Image, Converter={StaticResource imgConv}}"></Image>
+                
+                <StackLayout HorizontalOptions="CenterAndExpand" Padding="50,50,50,0">
+                    <Label HorizontalTextAlignment="Center" Text="{Binding Cijena, StringFormat='Cijena sa popustom: {0} KM'}" FontAttributes="Bold"></Label>
+                    <Label HorizontalTextAlignment="Center" Text="{Binding Proizvod.GetDiscount, StringFormat='Popust: {0}%'}"></Label>
+                    <Label HorizontalTextAlignment="Center" Text="{Binding Proizvod.Description}"></Label>
+                    <Label HorizontalTextAlignment="Center" Text="{Binding Proizvod.Condition, StringFormat='Stanje: {0}'}"></Label>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Padding="0,40" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Button Text="-" FontSize="22" Command="{Binding SmanjiKolicinuCommand}" WidthRequest="50" TextColor="White" BackgroundColor="DarkCyan"></Button>
+                    <Entry HorizontalTextAlignment="Center" Text="{Binding Kolicina}" Keyboard="Numeric"></Entry>
+                    <Button Text="+" FontSize="22" Command="{Binding PovecajKolicinuCommand}" WidthRequest="50" TextColor="White" BackgroundColor="DarkCyan"></Button>
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout Padding="0,0,35,15" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                <Image HeightRequest="45" WidthRequest="45" Source="cart.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NaruciCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

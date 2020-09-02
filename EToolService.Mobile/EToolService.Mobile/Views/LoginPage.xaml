@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:EToolService.Mobile.ViewModels;assembly=EToolService.Mobile"
+             mc:Ignorable="d"
+             x:Class="EToolService.Mobile.Views.LoginPage">
+    
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout Padding="0,60,0,0" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <Image Source="favicon.ico"></Image>
+                <Label FontSize="20" FontAttributes="Bold" Text="Dobrodošli na EToolService!"></Label>
+            </StackLayout>
+            <StackLayout Padding="25,-20,25,0" VerticalOptions="StartAndExpand">
+                <Label Text="Korisničko ime:"></Label>
+                <Entry Text="{Binding Username}"></Entry>
+                <Label Text="Lozinka:"></Label>
+                <Entry Text="{Binding Password}" IsPassword="True"></Entry>
+                <Button CornerRadius="10" BackgroundColor="DodgerBlue" TextColor="White" Command="{Binding LoginCommand}" Text="Prijava"></Button>
+                <Label HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Text="Pričekajte.."></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label HorizontalTextAlignment="Center" Text="Ukoliko nemate korisnički nalog, registrujte se!"></Label>
+                <Button Clicked="Button_OnClicked" Command="{Binding RegisterCommand}" TextColor="Black" BackgroundColor="WhiteSmoke" Text="Registracija"></Button>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
