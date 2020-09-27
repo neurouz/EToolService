@@ -79,5 +79,10 @@ namespace EToolService.Desktop.Forms.Product
             Page++;
             frmProducts_Load(sender, EventArgs.Empty);
         }
+
+        private void btnProductAdd_Click(object sender, EventArgs e)
+        {
+            // TODO: Forma za dodavanje novih proizvoda
+        }
     }
 }

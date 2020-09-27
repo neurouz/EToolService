@@ -68,6 +68,7 @@
             this.btnProductAdd.TabIndex = 11;
             this.btnProductAdd.TextColor = System.Drawing.Color.DarkSlateGray;
             this.btnProductAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnProductAdd.Click += new System.EventHandler(this.btnProductAdd_Click);
             // 
             // flowProductsPanel
             // 
