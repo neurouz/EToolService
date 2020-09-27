@@ -27,7 +27,7 @@ namespace EToolService.WebAPI.Services
 
         public async Task<List<Model.Models.Product>> Get(ProductSearchRequest request)
         {
-            var products = _context.Product.AsQueryable();
+            var products = _context.Product.AsQueryable().Where(x => x.Active == true);
 
             if(request.Page != -1)
             {
@@ -100,7 +100,7 @@ namespace EToolService.WebAPI.Services
             }
         }
 
-        private async Task ReplaceImage(Product product, string imageName, byte[] byteArray)
+        private async Task ReplaceImage(Database.Product product, string imageName, byte[] byteArray)
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Images", "Products", $"{product.ImageLocation}");
 
@@ -129,7 +129,7 @@ namespace EToolService.WebAPI.Services
             }
         }
 
-        private async Task<Product> Map(Product product, ProductUpdateRequest request)
+        private async Task<Database.Product> Map(Database.Product product, ProductUpdateRequest request)
         {
             product.Condition = request.Condition != null ? request.Condition : product.Condition;
             product.Discount = request.Discount != product.Discount ? request.Discount : product.Discount;
@@ -151,6 +151,18 @@ namespace EToolService.WebAPI.Services
 
             await _context.SaveChangesAsync();
             return product;
+        }
+
+        public async Task<Model.Models.Product> SetInactive(int id)
+        {
+            var product = _context.Product.Find(id);
+            if(product == null)
+                throw new UserException("Proizvod ne postoji u bazi");
+
+            product.Active = false;
+
+            await _context.SaveChangesAsync();
+            return _mapper.Map<Model.Models.Product>(product);
         }
     }
 }

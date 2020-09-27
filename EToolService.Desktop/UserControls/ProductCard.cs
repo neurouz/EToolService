@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using EToolService.Model.Models;
 using System.IO;
 using EToolService.Desktop.Forms.Product;
+using EToolService.Desktop.Services;
+// ReSharper disable All
 
 namespace EToolService.Desktop.UserControls
 {
     public partial class ProductCard : UserControl
     {
         private Product _product;
+        public frmProducts _ParentForm { get; set; }
         public ProductCard(Product product)
         {
             InitializeComponent();
@@ -67,6 +70,27 @@ namespace EToolService.Desktop.UserControls
             }
             catch (Exception) { }
             picProductImage.Image = image;
+        }
+
+        private async void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Jeste li sigurni da želite obrisati proizvod '{_product.ProductName}'?", "Info",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                try
+                {
+                    var request = await new APIService("Product/SetInactive").Patch<Product>(_product.Id, null);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show($"Dogodila se greška na serveru: {exception.Message}", "Greška na serveru",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                MessageBox.Show("Proizvod uspješno obrisan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ParentForm.Reload(this);
+            }
         }
     }
 }

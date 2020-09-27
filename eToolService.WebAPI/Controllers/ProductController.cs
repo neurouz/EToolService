@@ -42,5 +42,11 @@ namespace EToolService.WebAPI.Controllers
         {
             return await _service.Update(id, request);
         }
+
+        [HttpPatch("SetInactive/{id}")]
+        public async Task<Model.Models.Product> SetInactive(int id)
+        {
+            return await _service.SetInactive(id);
+        }
     }
 }

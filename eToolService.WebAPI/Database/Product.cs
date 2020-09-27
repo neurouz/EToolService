@@ -12,6 +12,6 @@ namespace EToolService.WebAPI.Database
         public string Description { get; set; }
         public string Condition { get; set; }
         public double Discount { get; set; }
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
     }
 }

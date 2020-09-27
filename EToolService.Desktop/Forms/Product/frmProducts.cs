@@ -28,6 +28,11 @@ namespace EToolService.Desktop.Forms.Product
             this.flowProductsPanel.Controls.Clear();
         }
 
+        public void Reload(object sender)
+        {
+            frmProducts_Load(sender, EventArgs.Empty);
+        }
+
         private async void frmProducts_Load(object sender, EventArgs e)
         {
             var request = new ProductSearchRequest()
@@ -54,7 +59,7 @@ namespace EToolService.Desktop.Forms.Product
 
             for (int i = productList.Count() - 1; i >= 0; i--)
             {
-                var card = new ProductCard(productList[i]);
+                var card = new ProductCard(productList[i]) { _ParentForm = this };
                 card.Show();
                 flowProductsPanel.Controls.Add(card);
             }

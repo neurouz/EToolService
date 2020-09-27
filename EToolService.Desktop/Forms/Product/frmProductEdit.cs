@@ -105,7 +105,10 @@ namespace EToolService.Desktop.Forms.Product
         {
 
             if (!ValidateAll())
+            {
+                MessageBox.Show("Podaci nisu ispravni", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
 
             var request = new ProductUpdateRequest()
             {

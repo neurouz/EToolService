@@ -1,4 +1,5 @@
-﻿using EToolService.Model.Requests;
+﻿using EToolService.Model.Models;
+using EToolService.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace EToolService.WebAPI.Services.Interfaces
         Task<Model.Models.Product> Get(int id);
         Task<List<Model.Models.Product>> Recommend(int clientId);
         Task<Model.Models.Product> Update(int id, ProductUpdateRequest request);
+        Task<Product> SetInactive(int id);
     }
 }

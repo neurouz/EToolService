@@ -43,11 +43,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lineLeft = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dotLeft = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picProductImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dotLeft)).BeginInit();
             this.SuspendLayout();
             // 
             // picProductImage
@@ -179,6 +177,7 @@
             this.btnRemove.TabIndex = 16;
             this.btnRemove.TextColor = System.Drawing.Color.DarkSlateGray;
             this.btnRemove.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // valID
             // 
@@ -222,23 +221,12 @@
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             // 
-            // dotLeft
-            // 
-            this.dotLeft.Image = ((System.Drawing.Image)(resources.GetObject("dotLeft.Image")));
-            this.dotLeft.Location = new System.Drawing.Point(4, 121);
-            this.dotLeft.Name = "dotLeft";
-            this.dotLeft.Size = new System.Drawing.Size(15, 15);
-            this.dotLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.dotLeft.TabIndex = 24;
-            this.dotLeft.TabStop = false;
-            // 
             // ProductCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Controls.Add(this.dotLeft);
             this.Controls.Add(this.lineLeft);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.valID);
@@ -259,7 +247,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picProductImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dotLeft)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -280,6 +267,5 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox lineLeft;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox dotLeft;
     }
 }
