@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EToolService.Model.Requests
 {
-    public class ProductUpdateRequest
+    public class ProductUpsertRequest
     {
         public string ProductName { get; set; }
         public double Price { get; set; }

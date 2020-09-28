@@ -26,25 +26,34 @@ namespace EToolService.Desktop.Forms.Product
         public frmProductEdit(EToolService.Model.Models.Product product)
         {
             InitializeComponent();
-            txtCijena.Text = Math.Round(product.Price, 2).ToString();
-            txtNaziv.Text = product.ProductName;
-            txtPopust.Text = (product.Discount * 100).ToString();
-            txtStanje.Text = product.Condition;
-            txtDimensions.Text = product.Description;
-            valID.Text = product.Id.ToString();
-            txtFilename.Text = product.ImageLocation;
-            _originalFilename = product.ImageLocation;
             _product = product;
-            Image image = null;
-            try
+
+            if (product != null)
             {
-                using (var ms = new MemoryStream(product.Image))
+                txtCijena.Text = Math.Round(product.Price, 2).ToString();
+                txtNaziv.Text = product.ProductName;
+                txtPopust.Text = (product.Discount * 100).ToString();
+                txtStanje.Text = product.Condition;
+                txtDimensions.Text = product.Description;
+                valID.Text = product.Id.ToString();
+                txtFilename.Text = product.ImageLocation;
+                _originalFilename = product.ImageLocation;
+                Image image = null;
+                try
                 {
-                    image = Image.FromStream(ms);
+                    using (var ms = new MemoryStream(product.Image))
+                    {
+                        image = Image.FromStream(ms);
+                    }
                 }
+                catch (Exception) { }
+                imgProductImage.Image = image;
             }
-            catch (Exception) { }
-            imgProductImage.Image = image;
+            else
+            {
+                valID.Visible = false;
+                btnPromijeniSliku.ButtonText = "Dodaj sliku";
+            }
         }
 
         private void btnCLose_Click(object sender, EventArgs e)
@@ -103,14 +112,13 @@ namespace EToolService.Desktop.Forms.Product
 
         private async void btnAddRequest_Click(object sender, EventArgs e)
         {
-
             if (!ValidateAll())
             {
                 MessageBox.Show("Podaci nisu ispravni", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var request = new ProductUpdateRequest()
+            var request = new ProductUpsertRequest()
             {
                 Condition = txtStanje.Text,
                 Description = txtDimensions.Text,
@@ -118,22 +126,40 @@ namespace EToolService.Desktop.Forms.Product
                 ProductName = txtNaziv.Text,
                 Price = double.Parse(txtCijena.Text)
             };
+
             if(txtFilename.Text != _originalFilename)
             {
                 request.ImageFileName = pictureDialog.SafeFileName;
-                var stream = pictureDialog.OpenFile();
-                using (stream)
+                try
                 {
-                    request.Image = File.ReadAllBytes(pictureDialog.FileName);
+                    var stream = pictureDialog.OpenFile();
+                    using (stream)
+                    {
+                        request.Image = File.ReadAllBytes(pictureDialog.FileName);
+                    }
                 }
+                catch (Exception) { }
             }
 
-            var result = await _service
-                .Patch<EToolService.Model.Models.Product>(_product.Id, request);
+            if(_product != null)
+            {
+                var result = await _service
+                    .Patch<EToolService.Model.Models.Product>(_product.Id, request);
 
-            MessageBox.Show("Uspješno promijenjeno", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Parent.Reload(result);
-            this.Close();
+                MessageBox.Show("Uspješno promijenjeno", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Parent.Reload(result);
+                this.Close();
+            }
+            else
+            {
+                var result = await _service
+                    .Insert<EToolService.Model.Models.Product>(request);
+
+                MessageBox.Show("Proizvod uspješno dodan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if(_product != null)
+                    Parent.Reload(result);
+                this.Close();
+            }
         }
     }
 }

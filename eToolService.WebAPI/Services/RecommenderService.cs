@@ -27,7 +27,7 @@ namespace EToolService.WebAPI.Services
         public async Task<List<Model.Models.Product>> Recommend(int clientId)
         {
             // Svi proizvodi
-            var products = _context.Product.ToList();
+            var products = _context.Product.Where(x => x.Active == true).ToList();
 
             // top 4 servisa za odredjenog klijenta
             var services = _context.Service

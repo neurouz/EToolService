@@ -38,7 +38,7 @@ namespace EToolService.WebAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<Model.Models.Product> Update(int id, [FromBody] ProductUpdateRequest request)
+        public async Task<Model.Models.Product> Update(int id, [FromBody] ProductUpsertRequest request)
         {
             return await _service.Update(id, request);
         }
@@ -47,6 +47,12 @@ namespace EToolService.WebAPI.Controllers
         public async Task<Model.Models.Product> SetInactive(int id)
         {
             return await _service.SetInactive(id);
+        }
+
+        [HttpPost]
+        public async Task<Model.Models.Product> Insert([FromBody] ProductUpsertRequest request)
+        {
+            return await _service.Insert(request);
         }
     }
 }

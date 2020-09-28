@@ -12,7 +12,8 @@ namespace EToolService.WebAPI.Services.Interfaces
         Task<List<Model.Models.Product>> Get(ProductSearchRequest request);
         Task<Model.Models.Product> Get(int id);
         Task<List<Model.Models.Product>> Recommend(int clientId);
-        Task<Model.Models.Product> Update(int id, ProductUpdateRequest request);
+        Task<Model.Models.Product> Update(int id, ProductUpsertRequest request);
         Task<Product> SetInactive(int id);
+        Task<Product> Insert(ProductUpsertRequest request);
     }
 }

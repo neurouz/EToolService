@@ -4,11 +4,13 @@ using EToolService.WebAPI.Database;
 using EToolService.WebAPI.Exceptions;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace EToolService.WebAPI.Services
@@ -72,7 +74,7 @@ namespace EToolService.WebAPI.Services
             return products;
         }
 
-        public async Task<Model.Models.Product> Update(int id, ProductUpdateRequest request)
+        public async Task<Model.Models.Product> Update(int id, ProductUpsertRequest request)
         {
 
             var entity = _context.Product.Find(id);
@@ -97,6 +99,35 @@ namespace EToolService.WebAPI.Services
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        private async Task InsertImage(Product product, string imageName, byte[] byteArray)
+        {
+            try
+            {
+                if(byteArray != null)
+                {
+                    var filename = $"product_{product.Id.ToString()}";
+                    var extension = Path.GetExtension(imageName);
+                    var newPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Images",
+                        "Products", $"{filename}{extension}");
+
+                    await File.WriteAllBytesAsync(newPath, byteArray);
+                    product.ImageLocation = $"{filename}{extension}";
+
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    product.ImageLocation = "product_empty.png";
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new UserException("Dogodila se greska prilikom dodavanja slike proizvoda. Provjerite podatke");
             }
         }
 
@@ -129,7 +160,7 @@ namespace EToolService.WebAPI.Services
             }
         }
 
-        private async Task<Database.Product> Map(Database.Product product, ProductUpdateRequest request)
+        private async Task<Database.Product> Map(Database.Product product, ProductUpsertRequest request)
         {
             product.Condition = request.Condition != null ? request.Condition : product.Condition;
             product.Discount = request.Discount != product.Discount ? request.Discount : product.Discount;
@@ -162,6 +193,24 @@ namespace EToolService.WebAPI.Services
             product.Active = false;
 
             await _context.SaveChangesAsync();
+            return _mapper.Map<Model.Models.Product>(product);
+        }
+
+        public async Task<Model.Models.Product> Insert(ProductUpsertRequest request)
+        {
+            var product = new Product()
+            {
+                ProductName = request.ProductName,
+                Price = (decimal)request.Price,
+                Condition = request.Condition,
+                Description = request.Description,
+                Discount = request.Discount,
+                Active = true
+            };
+            await InsertImage(product, request.ImageFileName, request.Image);
+            _context.Product.Add(product);
+            await _context.SaveChangesAsync();
+
             return _mapper.Map<Model.Models.Product>(product);
         }
     }
