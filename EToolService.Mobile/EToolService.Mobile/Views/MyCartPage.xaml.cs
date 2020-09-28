@@ -37,5 +37,12 @@ namespace EToolService.Mobile.Views
                 BtnConfirm.IsEnabled = true;
             }
         }
+
+        private void BtnRemove_Clicked(object sender, EventArgs e)
+        {
+            var product = ((Button)sender).BindingContext as Product;
+            OrderService.RemoveProduct(product);
+            OnAppearing();
+        }
     }
 }

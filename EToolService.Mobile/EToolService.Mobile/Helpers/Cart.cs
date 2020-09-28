@@ -124,6 +124,7 @@ namespace EToolService.Mobile.Helpers
                     continue;
                 else
                 {
+                    temp[k] = new Pair<T>();
                     temp[k].Value = PairArray[k].Value;
                     temp[k].Count = PairArray[k].Count;
                     k++;

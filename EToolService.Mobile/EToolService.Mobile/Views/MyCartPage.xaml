@@ -48,6 +48,19 @@
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            TextColor="ForestGreen" />
                                 </StackLayout>
+
+                                <StackLayout WidthRequest="100" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                    <Button x:Name="BtnRemove" 
+                                            BindingContext="{Binding Item1}" 
+                                            Clicked="BtnRemove_Clicked" 
+                                            TextColor="White" 
+                                            BackgroundColor="DarkRed" 
+                                            Text="Ukloni" 
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            WidthRequest="100">                                      
+                                    </Button>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
