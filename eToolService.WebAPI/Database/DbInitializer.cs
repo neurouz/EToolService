@@ -629,8 +629,14 @@ namespace EToolService.WebAPI.Database
                                  + services[i].Id.ToString() + _extensions[GetRandomInt(0, 4)];
 
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "Data", "ServiceAttachments", $"{attachment}");
-
-                File.Create(path);
+                try
+                {
+                    File.Create(path);
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
 
                 services[i].Attachment = attachment;
             }

@@ -10,6 +10,7 @@
         <viewModels:RequestFormViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout Padding="0,25" Orientation="Vertical" VerticalOptions="Start">
             <Label Text="Pošaljite novi zahtjev za servis"
                 VerticalOptions="CenterAndExpand" 
@@ -64,5 +65,6 @@
             </StackLayout>
             <Button Command="{Binding SubmitCommand}" Margin="25,-10,25,0" CornerRadius="10" BackgroundColor="DodgerBlue" TextColor="White" Text="Potvrdi"></Button>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

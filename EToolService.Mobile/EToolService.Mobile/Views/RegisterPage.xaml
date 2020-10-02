@@ -12,6 +12,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout Padding="30,20,30,0" Spacing="2">
             <StackLayout Padding="0,0,0,25">
                 <Label FontSize="20" FontAttributes="Bold" Text="Registracija na EToolService"></Label>
@@ -41,6 +42,7 @@
                 <Label HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Text="Pričekajte.."></Label>
             </StackLayout>
         </StackLayout>
-            
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

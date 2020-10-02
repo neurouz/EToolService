@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             
-            <Label x:Name="title" Text="Detalji o servisu" Margin="0,40,0,50" 
+            <Label x:Name="title" Text="Detalji o servisu" Margin="0,20,0,10" 
                    HorizontalTextAlignment="Center" TextColor="DarkCyan" 
                    Font="Bold, 20" VerticalOptions="StartAndExpand"
                    VerticalTextAlignment="Start"

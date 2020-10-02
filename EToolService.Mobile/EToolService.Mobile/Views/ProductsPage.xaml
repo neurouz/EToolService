@@ -20,9 +20,14 @@
         <StackLayout>
             <Label Text="Proizvodi" Padding="0,20,0,25" HorizontalTextAlignment="Center" 
                    TextColor="DarkCyan" Font="Bold, 20"
-                   VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding ProductList}" ItemSelected="ListView_OnItemSelected">
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS">125</On>
+                        <On Platform="Android">115</On>
+                    </OnPlatform>
+                </ListView.RowHeight>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -30,7 +35,7 @@
                                 <StackLayout>
                                     <Image WidthRequest="80" HeightRequest="80" Source="{Binding Key.Image, Converter={StaticResource imgConv}}"></Image>
                                 </StackLayout>
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
                                     <Label Text="{Binding Key.ProductName}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}"

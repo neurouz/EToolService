@@ -9,19 +9,25 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
-                <Label Text="Detalji o narudžbi" Padding="0,20,0,25" HorizontalTextAlignment="Center" TextColor="DarkCyan" Font="Bold, 20"></Label>
+                <Label Text="Detalji o narudžbi" Padding="0,20,0,5" HorizontalTextAlignment="Center" TextColor="DarkCyan" Font="Bold, 20"></Label>
             </StackLayout>
             <Label Text="{Binding OrderDate, StringFormat='Datum narudžbe: {0}'}" 
                    LineBreakMode="NoWrap" 
                    Style="{DynamicResource ListItemTextStyle}"
                    FontSize="16" />
             <ListView ItemsSource="{Binding Order.Products}">
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS">125</On>
+                        <On Platform="Android">85</On>
+                    </OnPlatform>
+                </ListView.RowHeight>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="25,10,25,10" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Value.ProductName, StringFormat='Naziv proizvoda: {0}'}" 
+                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
+                                    <Label Text="{Binding Value.ProductName}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}"
                                            FontSize="16" 
@@ -46,7 +52,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Margin="0,0,0,100" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+            <StackLayout Margin="0,15,0,20" Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
                 <Label HorizontalTextAlignment="Center" Text="{Binding Order.Total, StringFormat='Ukupna cijena: {0} KM'}" FontAttributes="Bold" FontSize="20"></Label>
                 <Label HorizontalTextAlignment="Center" Text="{Binding Order.Condition, StringFormat='Stanje narudžbe: {0}'}" FontSize="20"></Label>
             </StackLayout>

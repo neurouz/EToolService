@@ -16,14 +16,18 @@
         <StackLayout>
             <Label Text="Dobrodošli na EToolService" Padding="0,20,0,10" 
                    TextColor="DarkCyan" Font="Bold, 20"
-                   VerticalOptions="StartAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
             <Label Text="Na osnovu vaših servisa, preporučujemo Vam kupovinu sljedećih alata"
-                   Padding="0,20,0,25" 
+                   Padding="25,0,0,25" 
                    TextColor="DarkSlateGray" Font="Bold, 14"
-                   VerticalOptions="StartAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding Products}" ItemSelected="ListView_ItemSelected">
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS">125</On>
+                        <On Platform="Android">115</On>
+                    </OnPlatform>
+                </ListView.RowHeight>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,7 +35,7 @@
                                 <StackLayout>
                                     <Image WidthRequest="80" HeightRequest="80" Source="{Binding Key.Image, Converter={StaticResource imgConv}}"></Image>
                                 </StackLayout>
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
                                     <Label Text="{Binding Key.ProductName}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}"

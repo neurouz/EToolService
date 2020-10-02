@@ -19,11 +19,11 @@ namespace EToolService.Mobile.Services
         private readonly string _route;
 
 #if DEBUG
-        private string _apiUrl = "http://localhost:5000/api";
+        private string _apiUrl = "http://130.211.114.153:5000/api";
 #endif
 
 #if RELEASE
-        private string _apiUrl = "http://localhost:5000/api";
+        private string _apiUrl = "http://130.211.114.153:5000/api";
 #endif
 
         public APIService(string route)

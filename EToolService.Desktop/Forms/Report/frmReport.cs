@@ -21,6 +21,8 @@ namespace EToolService.Desktop.Forms.Report
     {
         private readonly APIService _service = new APIService("Report");
         private const string _path = "..\\..\\Data\\Months.json";
+        private string __path = Path.Combine(Directory.GetCurrentDirectory(),
+            "Data", "Months.json");
         public frmReport()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace EToolService.Desktop.Forms.Report
             loader1.Visible = true;
             try
             {
-                using (StreamReader reader = new StreamReader(_path))
+                using (StreamReader reader = new StreamReader(__path))
                 {
                     string json = reader.ReadToEnd();
                     List<KeyValuePair<int, string>> items = JsonConvert
@@ -39,9 +41,9 @@ namespace EToolService.Desktop.Forms.Report
                     comboMjesec.DisplayMember = "value";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska prilikom ucitavanja fajla", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Greska prilikom ucitavanja fajla: {ex.Message}", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Setting default values for year and month to avoid exceptions
@@ -177,8 +179,11 @@ namespace EToolService.Desktop.Forms.Report
             var year = int.Parse(comboGodina.SelectedValue.ToString());
             var month = months[comboMjesec.SelectedIndex].Value;
 
-            var fileName = month.ToLower() + "_" + year.ToString() + ".pdf";            
-            var path = "..\\..\\Data\\Reports\\izvjestaj_" + fileName;
+            var fileName = month.ToLower() + "_" + year.ToString() + ".pdf";
+            var path = Path.Combine(Directory.GetCurrentDirectory(),
+                "Data", "Reports", $"izvjestaj_{fileName}");
+
+            // var path = "..\\..\\Data\\Reports\\izvjestaj_" + fileName;
 
             var mjesec = int.Parse(comboMjesec.SelectedValue.ToString());
             var godina = int.Parse(comboGodina.SelectedValue.ToString());

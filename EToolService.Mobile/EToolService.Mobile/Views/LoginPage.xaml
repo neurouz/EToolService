@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <StackLayout Padding="0,60,0,0" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
-                <Image Source="favicon.ico"></Image>
+                <Image WidthRequest="150" HeightRequest="150" Source="favicon.ico"></Image>
                 <Label FontSize="20" FontAttributes="Bold" Text="Dobrodošli na EToolService!"></Label>
             </StackLayout>
             <StackLayout Padding="25,-20,25,0" VerticalOptions="StartAndExpand">
@@ -26,7 +26,7 @@
                 <Label HorizontalOptions="Center" IsVisible="{Binding IsBusy}" Text="Pričekajte.."></Label>
             </StackLayout>
             <StackLayout>
-                <Label HorizontalTextAlignment="Center" Text="Ukoliko nemate korisnički nalog, registrujte se!"></Label>
+                <Label Margin="0,0,0,10" HorizontalTextAlignment="Center" Text="Ukoliko nemate korisnički nalog, registrujte se!"></Label>
                 <Button Clicked="Button_OnClicked" Command="{Binding RegisterCommand}" TextColor="Black" BackgroundColor="WhiteSmoke" Text="Registracija"></Button>
             </StackLayout>
         </StackLayout>

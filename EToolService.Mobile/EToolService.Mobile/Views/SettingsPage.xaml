@@ -7,6 +7,7 @@
         <viewModels:SettingsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
             <StackLayout>
                 <Label x:Name="title" Text="Postavke vašeg naloga" Padding="0,20,0,25" 
@@ -40,5 +41,6 @@
                 </StackLayout>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

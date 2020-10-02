@@ -10,9 +10,15 @@
         <StackLayout>
             <Label Text="Pregled servisa" Padding="0,20,0,25" HorizontalTextAlignment="Center" 
                    TextColor="DarkCyan" Font="Bold, 20"
-                   VerticalOptions="StartAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding Services}" ItemSelected="ListView_ItemSelected">
+            <ListView ItemsSource="{Binding Services}" 
+                      ItemSelected="ListView_ItemSelected">
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS">125</On>
+                        <On Platform="Android">105</On>
+                    </OnPlatform>
+                </ListView.RowHeight>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

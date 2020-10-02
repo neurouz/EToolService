@@ -13,14 +13,20 @@
         <StackLayout>
             <Label x:Name="title" Text="Vaša korpa" Padding="0,20,0,25" 
                    HorizontalTextAlignment="Center" TextColor="DarkCyan" 
-                   Font="Bold, 20" VerticalOptions="CenterAndExpand" 
+                   Font="Bold, 20"
                    HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding ProductList}">
+                <ListView.RowHeight>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="iOS">125</On>
+                        <On Platform="Android">110</On>
+                    </OnPlatform>
+                </ListView.RowHeight>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Vertical">
                                     <Label Text="{Binding Item1.ProductName}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}"
@@ -43,7 +49,7 @@
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="13" />
-                                    <Label Text="{Binding Item3, StringFormat='Ukupno sa popustom: {0} KM'}"
+                                    <Label Text="{Binding Item3, StringFormat='Total: {0} KM'}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            TextColor="ForestGreen" />
@@ -58,7 +64,7 @@
                                             Text="Ukloni" 
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
-                                            WidthRequest="100">                                      
+                                            WidthRequest="100">
                                     </Button>
                                 </StackLayout>
                             </StackLayout>
@@ -67,7 +73,9 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-                <Label Margin="0,0,0,25" HorizontalTextAlignment="Center" Text="{Binding Total, StringFormat='Ukupna vrijednost narudžbe: {0} KM'}"
+                <Label Margin="0,0,0,0" 
+                       HorizontalTextAlignment="Center" 
+                       Text="{Binding Total, StringFormat='Ukupna vrijednost narudžbe: {0} KM'}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        TextColor="ForestGreen"

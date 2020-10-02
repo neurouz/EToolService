@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "SQL": "Data Source=:memory:;Initial Catalog=TestDB;Trusted_Connection=true;MultipleActiveResultSets=True;TrustServerCertificate=true;"
+  }
+}
