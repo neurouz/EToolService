@@ -92,16 +92,14 @@ namespace EToolService.UnitTest
 
             Assert.Equal("desktop", _accountService.Get(1).Username);
 
-            // Nepostojeci username i password vraca NULL
-            var authenticateRequest = new AuthenticateRequest()
+            var authenticateRequest = new AuthenticateRequest() // Pogrešni kredencijali
             {
                 Username = "ne_postoji",
                 Password = "ne_postoji"
             };
             Assert.Null(_accountService.Authenticate(authenticateRequest));
-
-            // Postojeci username i password vraca objekat tipa Account
-            var authRequest = new AuthenticateRequest()
+            
+            var authRequest = new AuthenticateRequest() // Validni kredencijali
             {
                 Username = "mobile",
                 Password = "test"
