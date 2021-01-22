@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EToolService.Model.Requests;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EToolService.WebAPI.Controllers
@@ -10,6 +11,7 @@ namespace EToolService.WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("etoolservice-policy")]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;

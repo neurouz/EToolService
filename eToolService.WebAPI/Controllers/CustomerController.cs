@@ -6,6 +6,7 @@ using EToolService.Model.Requests;
 using EToolService.WebAPI.Exceptions;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace EToolService.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("etoolservice-policy")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;

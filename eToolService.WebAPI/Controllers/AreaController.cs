@@ -7,6 +7,7 @@ using EToolService.Model.Requests;
 using EToolService.WebAPI.Database;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace EToolService.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("etoolservice-policy")]
     public class AreaController : ControllerBase
     {
         private readonly Context _context;

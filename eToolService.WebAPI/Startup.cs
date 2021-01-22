@@ -63,6 +63,11 @@ namespace EToolService.WebAPI
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
                     ("BasicAuthentication", null);
 
+            services.AddCors(cors => cors.AddPolicy("etoolservice-policy", policy =>
+            {
+                policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .ConfigureApiBehaviorOptions(options =>
@@ -124,6 +129,8 @@ namespace EToolService.WebAPI
 
             app.UseRouting();
             app.UseStaticFiles();
+
+            app.UseCors("etoolservice-policy");
 
             app.UseAuthentication();
             app.UseAuthorization();

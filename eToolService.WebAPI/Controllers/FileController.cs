@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EToolService.WebAPI.Exceptions;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace EToolService.WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("etoolservice-policy")]
     public class FileController : ControllerBase
     {
         private readonly IFileService _service;

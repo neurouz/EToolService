@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EToolService.Model.Requests;
 using EToolService.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace EToolService.WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("etoolservice-policy")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _service;
