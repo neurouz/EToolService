@@ -17,6 +17,8 @@ services:
   etoolservice-api:
     restart: unless-stopped
     build: .
+    volumes:
+      - './Data/Images/Products:/app/Data/Images/Products'
     environment:
       - ConnectionStrings:EToolServiceDB=Server=etoolservice-sql,1433;Database=EToolServiceDocker;User=sa;Password=QWElkj132!;ConnectRetryCount=0;MultipleActiveResultSets=true
     ports:
